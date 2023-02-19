@@ -2,8 +2,6 @@
   "current": {
     "logo": "shopify:\/\/shop_images\/ChiFly_FlagDecal2_256x256_crop_center_f655748c-917f-44af-bde0-5838cb6073dd.jpg",
     "logo_width": 110,
-    "buttons_radius": 4,
-    "inputs_radius": 4,
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
