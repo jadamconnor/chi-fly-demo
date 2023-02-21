@@ -24,6 +24,10 @@
     },
     "header": {
       "type": "header",
+      "disabled": true,
+      "custom_css": [
+        "h1 {font-size: 55px;}"
+      ],
       "settings": {
         "color_scheme": "background-1",
         "logo_position": "middle-left",
@@ -36,10 +40,16 @@
         "padding_top": 20,
         "padding_bottom": 20
       }
+    },
+    "754dcee2-d1ef-4bc4-8fc0-452b99c69216": {
+      "type": "custom-header",
+      "settings": {
+      }
     }
   },
   "order": [
     "announcement-bar",
-    "header"
+    "header",
+    "754dcee2-d1ef-4bc4-8fc0-452b99c69216"
   ]
 }

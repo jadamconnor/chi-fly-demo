@@ -59,10 +59,36 @@
         class="disabled"
       {% endif %}
     >
-    <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
-      {{ value -}}
-      <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
-    </label>
+    {% comment %} Make option name case insensitive in case someone names it with the incorrect case {% endcomment %}
+    {% assign optionName = option.name | upcase %}
+    {%- if optionName == 'COLOR' -%}
+      <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}">
+        {% assign prevValue = '' %}
+        {%- for variant in product.variants -%}
+          {%- if value == variant.option1 and variant.option1 != prevValue -%}
+            {%- if variant.featured_image -%}
+              <img
+                src="{{variant.featured_image.src | img_url: "small"}}"
+                width="50"
+                height="50"
+                loading="lazy"
+              >
+            {%- else -%}
+              <div style="padding: 1rem 2rem">
+                {{ value -}}
+              </div>
+            {%- endif -%}
+          {%- endif -%}
+          {% assign prevValue = variant.option1 %}
+        {%- endfor -%}
+        <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
+      </label>
+    {%- else -%}
+      <label for="{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}" style="padding: 1rem 2rem">
+        {{ value -}}
+        <span class="visually-hidden">{{ 'products.product.variant_sold_out_or_unavailable' | t }}</span>
+      </label>
+    {%- endif -%}
   {%- elsif block.settings.picker_type == 'dropdown' -%}
     <option
       value="{{ value | escape }}"
